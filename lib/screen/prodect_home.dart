@@ -1,10 +1,18 @@
-import 'dart:ffi';
+
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controller/product_controller.dart';
+import 'Widget/productTile.dart';
+
+void main()async{
+  runApp(GetMaterialApp(
+    home: productHome(),
+    debugShowCheckedModeBanner: false,
+  ));
+}
 
 class productHome extends StatelessWidget {
   final ProductController productController=Get.put(ProductController());
@@ -27,7 +35,9 @@ class productHome extends StatelessWidget {
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2),
                 itemBuilder: (context, index) {
-                  return ProductTile();
+                  return ProductTile(
+                    productController.productList[index],
+                  );
                 },
               );
             }
